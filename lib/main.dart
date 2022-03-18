@@ -5,6 +5,7 @@ import 'package:flutter_nav_starter/screens/green_screen.dart';
 import 'package:flutter_nav_starter/screens/amber_screen.dart';
 //parts of the main page
 import 'package:flutter_nav_starter/shared/bottom_nav.dart';
+import 'package:flutter_nav_starter/shared/drawer_nav.dart';
 import 'package:flutter_nav_starter/shared/top_bar.dart';
 
 void main() {
@@ -56,6 +57,12 @@ class _MainPageState extends State<MainPage> {
       ),
       body: screens[currentIndex],
       // where all the pages get loaded
+      drawer: NavDrawer(
+          currentIndex: currentIndex,
+          onTapped: (i) {
+            print(i);
+            setState(() => currentIndex = i);
+          }),
       bottomNavigationBar: BottomNav(
           currentIndex: currentIndex,
           onTapped: (i) {
