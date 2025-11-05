@@ -10,11 +10,11 @@ class TopBar extends StatelessWidget {
       centerTitle: true,
       actions: [
         IconButton(
-          icon: Icon(Icons.water),
+          icon: const Icon(Icons.water),
           onPressed: () {
-            print('It\'s a Trap!!!');
+            debugPrint('It\'s a Trap!!!');
           },
-        )
+        ),
       ],
     );
   }

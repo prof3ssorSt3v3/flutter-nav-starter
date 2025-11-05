@@ -18,9 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //put the things that are the same on every page here...
-    return MaterialApp(
-      home: MainPage(),
-    );
+    return const MaterialApp(home: MainPage());
   }
 }
 
@@ -39,36 +37,38 @@ class _MainPageState extends State<MainPage> {
   //loaded as the body in Scaffold of MainPageState
   int currentIndex = 0;
 
-  final screens = <Widget>[
-    HomeScreen(),
-    GreenScreen(),
-    AmberScreen(),
-  ];
+  final screens = const <Widget>[HomeScreen(), GreenScreen(), AmberScreen()];
 
-  //we will pass this list to the BottomNav
+  //we will reference this list through the NavDrawer and NavigationBar
 
-  // to access variables from MainPage use `widget.`
+  // to access variables here from the MainPage class use the prefix `widget.`
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: TopBar(),
-      ),
+      appBar: const PreferredSize(preferredSize: Size.fromHeight(60), child: TopBar()),
       body: screens[currentIndex],
       // where all the pages get loaded
       drawer: NavDrawer(
-          currentIndex: currentIndex,
-          onTapped: (i) {
-            print(i);
-            setState(() => currentIndex = i);
-          }),
-      bottomNavigationBar: BottomNav(
-          currentIndex: currentIndex,
-          onTapped: (i) {
-            print(i);
-            setState(() => currentIndex = i);
-          }),
+        currentIndex: currentIndex,
+        onTapped: (i) {
+          debugPrint('Tapped NavItem $i');
+          setState(() => currentIndex = i);
+          //same int shared between NavDrawer and NavigationBar
+        },
+      ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: currentIndex,
+        onDestinationSelected: (int i) {
+          debugPrint('Tapped NavItem $i');
+          setState(() => currentIndex = i);
+          //same int shared between NavDrawer and NavigationBar
+        },
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+          NavigationDestination(icon: Icon(Icons.apple), label: 'Green'),
+          NavigationDestination(icon: Icon(Icons.android), label: 'Amber'),
+        ],
+      ),
     );
   }
 }
