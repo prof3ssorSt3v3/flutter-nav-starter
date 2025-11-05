@@ -18,7 +18,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //put the things that are the same on every page here...
-    return const MaterialApp(home: MainPage());
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MainPage(),
+    );
   }
 }
 
