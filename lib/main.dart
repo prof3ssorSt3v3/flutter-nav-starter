@@ -4,7 +4,7 @@ import 'package:flutter_nav_starter/screens/home_screen.dart';
 import 'package:flutter_nav_starter/screens/green_screen.dart';
 import 'package:flutter_nav_starter/screens/amber_screen.dart';
 //parts of the main page
-import 'package:flutter_nav_starter/shared/bottom_nav.dart';
+// import 'package:flutter_nav_starter/shared/bottom_nav.dart';
 import 'package:flutter_nav_starter/shared/drawer_nav.dart';
 import 'package:flutter_nav_starter/shared/top_bar.dart';
 
