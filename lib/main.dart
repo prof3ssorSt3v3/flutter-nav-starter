@@ -37,16 +37,22 @@ class _MainPageState extends State<MainPage> {
   //loaded as the body in Scaffold of MainPageState
   int currentIndex = 0;
 
-  final screens = const <Widget>[HomeScreen(), GreenScreen(), AmberScreen()];
-
-  //we will reference this list through the NavDrawer and NavigationBar
-
   // to access variables here from the MainPage class use the prefix `widget.`
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(preferredSize: Size.fromHeight(60), child: TopBar()),
-      body: screens[currentIndex],
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: TopBar(),
+      ),
+      body: IndexedStack(
+        index: currentIndex,
+        children: const [
+          HomeScreen(),
+          GreenScreen(),
+          AmberScreen(),
+        ],
+      ),
       // where all the pages get loaded
       drawer: NavDrawer(
         currentIndex: currentIndex,
@@ -64,9 +70,18 @@ class _MainPageState extends State<MainPage> {
           //same int shared between NavDrawer and NavigationBar
         },
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.apple), label: 'Green'),
-          NavigationDestination(icon: Icon(Icons.android), label: 'Amber'),
+          NavigationDestination(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.apple),
+            label: 'Green',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.android),
+            label: 'Amber',
+          ),
         ],
       ),
     );
